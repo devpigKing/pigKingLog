@@ -1,11 +1,14 @@
 package com.pigkinglog.myblog.controller;
 
+import com.pigkinglog.myblog.domain.Article;
 import com.pigkinglog.myblog.dto.ArticleListViewResponse;
+import com.pigkinglog.myblog.dto.ArticleViewResponse;
 import com.pigkinglog.myblog.service.BlogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -24,6 +27,15 @@ public class BlogViewController {
         model.addAttribute("articles", articles); // 블로그 글 리스트 저장
 
         return "articleList";  // articleList.html라는 뷰 조회
+    }
+
+    @GetMapping("/articles/{id}")
+    public String getArticle(@PathVariable Long id, Model model) {
+        Article article = blogService.findById(id);
+        model.addAttribute("article", new ArticleViewResponse(article));
+
+        return "article";
+
     }
 
 }
