@@ -63,10 +63,10 @@ if (createButton) {
 }
 
 // 등록 기능
-const createButton = document.getElementById('create-btn');
+const createButton = document.getElementById("create-btn");
 
 if (createButton) {
-    createButton.addEventListener('click', (event) => {
+    createButton.addEventListener("click", (event) => {
         fetch("/api/articles", {
             method: "POST",
             headers: {
@@ -79,6 +79,6 @@ if (createButton) {
         }).then(() => {
             alert("등록 완료되었습니다.");
             location.replace("/articles");
-        })
-    })
+        });
+    });
 }
